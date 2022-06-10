@@ -27,18 +27,18 @@ while game_is_on :
 
     # Detecting distance between food and snake
     if snake.head.distance(food) <= 15:
-        print("nom,nom,nom")
         food.refresh()
         board.increase_score()
         board.update_score()
         snake.increase_length()
 
     if snake.head.xcor() >= 290 or snake.head.xcor() <= -290 or snake.head.ycor() >= 290 or snake.head.ycor() <= -290:
-        game_is_on = False
-        board.game_over()
+        snake.reset()
+        board.reset()
 
     for segment in snake.segments[1:]:
         if snake.head.distance(segment) < 10:
-            board.game_over()
-            game_is_on = False
+            board.reset()
+            snake.reset()
+
 screen.exitonclick()
